@@ -22,11 +22,20 @@ app.use(cors({
 }));
 
 app.use(express.json({ limit: '500mb' }));
+const date= new Date().toLocaleString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+  hour12: true,
+})
 
 app.post('/save', (req, res) => {
   // Create a new instance of the Data model
   const newData = new Data({
-    date: new Date().toLocaleDateString("en-GB"),
+    date: date,
     username: req.body.username,
     audioURL: req.body.audioDownloadURL,
     imageURL: req.body.imageDownloadURL,
